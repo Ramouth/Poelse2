@@ -21,15 +21,15 @@ import static com.almasb.fxgl.dsl.FXGL.*;
 /**
  * Dette spil er baseret på AlmasB turtorial om Drop.
  *
- * The player can move the bucket left and right to catch water droplets.
- * There are no win/lose conditions.
+ * Spilleren kan med tasterne w,s,d gå fra side til side og fange pølser
+ * Der er ingen win/lose conditions
  *
- * Note: for simplicity's sake all of the code is kept in this file.
- * In addition, most of typical FXGL API is not used to avoid overwhelming
- * FXGL beginners with a lot of new concepts to learn.
+
  *
- * @author Almas Baimagambetov (AlmasB) (almaslvl@gmail.com)
+ * @author Rachid Moutiq baseret på Almas Baimagambetov (AlmasB) (almaslvl@gmail.com)
  */
+
+//Starter
 public class SausageApp extends GameApplication {
 
     /**
