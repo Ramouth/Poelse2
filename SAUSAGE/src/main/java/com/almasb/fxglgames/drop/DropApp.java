@@ -36,14 +36,14 @@ public class DropApp extends GameApplication {
      * Types of entities in this game.
      */
     public enum DropType {
-        DROPLET, BUCKET
+        SAUSAGE, HEAD
     }
 
     private Entity bucket;
 
     @Override
     protected void initSettings(GameSettings settings) {
-        settings.setTitle("Drop");
+        settings.setTitle("SAUSAGE");
         settings.setVersion("1.0");
         settings.setWidth(480);
         settings.setHeight(800);
@@ -66,7 +66,7 @@ public class DropApp extends GameApplication {
 
     @Override
     protected void initPhysics() {
-        onCollisionBegin(DropType.BUCKET, DropType.DROPLET, (bucket, droplet) -> {
+        onCollisionBegin(DropType.HEAD, DropType.SAUSAGE, (bucket, droplet) -> {
             droplet.removeFromWorld();
 
             play("drop.wav");
@@ -75,12 +75,12 @@ public class DropApp extends GameApplication {
 
     @Override
     protected void onUpdate(double tpf) {
-        getGameWorld().getEntitiesByType(DropType.DROPLET).forEach(droplet -> droplet.translateY(150 * tpf));
+        getGameWorld().getEntitiesByType(DropType.SAUSAGE ).forEach( droplet -> droplet.translateY(150 * tpf));
     }
 
     private Entity spawnBucket() {
         return entityBuilder()
-                .type(DropType.BUCKET)
+                .type(DropType.HEAD )
                 .at(getAppWidth() / 2, getAppHeight() - 200)
                 .viewWithBBox("bucket.png")
                 .with(new CollidableComponent(true))
@@ -89,7 +89,7 @@ public class DropApp extends GameApplication {
 
     private Entity spawnDroplet() {
         return entityBuilder()
-                .type(DropType.DROPLET)
+                .type(DropType.SAUSAGE )
                 .at(FXGLMath.random(getAppWidth() - 64), 0)
                 .viewWithBBox("droplet.png")
                 .with(new CollidableComponent(true))
