@@ -3,6 +3,7 @@
  * Copyright (c) AlmasB (almaslvl@gmail.com).
  * See LICENSE for details.
  */
+// importere packagen fxglgames, der indeholder
 
 package com.almasb.fxglgames.drop;
 
@@ -14,12 +15,11 @@ import com.almasb.fxgl.entity.components.CollidableComponent;
 import javafx.scene.input.KeyCode;
 import javafx.util.Duration;
 
-// NOTE: this is crucial, the import pulls in many useful methods
+// NOTE: Her importeres FXGL med en række metoder, der bruges i spilled
 import static com.almasb.fxgl.dsl.FXGL.*;
 
 /**
- * This is an FXGL version of the libGDX simple game tutorial, which can be found
- * here - https://github.com/libgdx/libgdx/wiki/A-simple-game
+ * Dette spil er baseret på AlmasB turtorial om Drop.
  *
  * The player can move the bucket left and right to catch water droplets.
  * There are no win/lose conditions.
@@ -30,10 +30,10 @@ import static com.almasb.fxgl.dsl.FXGL.*;
  *
  * @author Almas Baimagambetov (AlmasB) (almaslvl@gmail.com)
  */
-public class DropApp extends GameApplication {
+public class SausageApp extends GameApplication {
 
     /**
-     * Types of entities in this game.
+     *
      */
     public enum DropType {
         SAUSAGE, HEAD
