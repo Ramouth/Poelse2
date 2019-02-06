@@ -84,12 +84,12 @@ public class SausageApp extends GameApplication {
             play("drop.wav");
         });
     }
-//
+//implementere onUpdate metoden, der bruges til at lave entiteter i spillet
     @Override
     protected void onUpdate(double tpf) {
         getGameWorld().getEntitiesByType(DropType.SAUSAGE ).forEach( droplet -> droplet.translateY(150 * tpf));
     }
-
+//laver entitien Bucket, der får beskrevet hvor den skal spawnes
     private Entity spawnBucket() {
         return entityBuilder()
                 .type(DropType.HEAD )
@@ -98,7 +98,7 @@ public class SausageApp extends GameApplication {
                 .with(new CollidableComponent(true))
                 .buildAndAttach();
     }
-
+    //laver entitien Droplet, der får beskrevet hvor den skal spawnes
     private Entity spawnDroplet() {
         return entityBuilder()
                 .type(DropType.SAUSAGE )
@@ -107,7 +107,7 @@ public class SausageApp extends GameApplication {
                 .with(new CollidableComponent(true))
                 .buildAndAttach();
     }
-
+//starter spillet
     public static void main(String[] args) {
         launch(args);
     }
