@@ -29,50 +29,62 @@ import static com.almasb.fxgl.dsl.FXGL.*;
  * @author Rachid Moutiq baseret på Almas Baimagambetov (AlmasB) (almaslvl@gmail.com)
  */
 
-//Starter
+/**
+ * Gør at vores SausageApp nedarver GameApllication med syntaxen "extends".
+ * GameApplication er en class, der er givet i GameApplication.class som er lavet op forhånd
+ * Den indeholder en lang rækker metoder.
+ */
 public class SausageApp extends GameApplication {
 
-    /**
-     *
-     */
+    //variablerne med datatypen enum sættes under navnet droptype
     public enum DropType {
         SAUSAGE, HEAD
     }
-
+//skaber entitien bucket
     private Entity bucket;
 
+//Her implementeres metoden GameSettings som var del af GameApplication-klassen.
     @Override
     protected void initSettings(GameSettings settings) {
+        //setTitle gør at man kan vælge en titel på sit spil
         settings.setTitle("SAUSAGE");
+        //setVersion gør at versionen bliver vist
         settings.setVersion("1.0");
+        //Settings.setWidth definerer bredden på den skærm som spillet popper op i
         settings.setWidth(480);
+        //setHeight definere højden på spillet.
         settings.setHeight(800);
     }
 
+    //Her implementeres metoden initInput som var del af GameApplication-klassen.
     @Override
     protected void initInput() {
+        //Her defineres hvordan vores spand bevæger sig. Man kan også ændre det så man bruger andre knapper til at styre spanden
+        // der her er et hoved.
         onKey(KeyCode.A, "Move Left", () -> bucket.translateX(-200 * tpf()));
         onKey(KeyCode.D, "Move Right", () -> bucket.translateX(200 * tpf()));
     }
-
+    //Her implementeres metoden initGame igen fra gameApplication
     @Override
     protected void initGame() {
+        //Den fortæller spillet at den skal lave en "bucket"
         bucket = spawnBucket();
-
+// Her skabes der en "Droplet hvert sekund"
         run(() -> spawnDroplet(), Duration.seconds(1));
-
+// Baggrundsmusikken loades, her er musikken fra drop udskiftet med en svedig basgang, der loopes
         loopBGM("bgm.mp3");
     }
-
+//Metoden initPhysics implementeres
     @Override
     protected void initPhysics() {
+        //metoden gør her at når  "Head" kolliderer med "Sausage", så forsvinder Sausage
         onCollisionBegin(DropType.HEAD, DropType.SAUSAGE, (bucket, droplet) -> {
             droplet.removeFromWorld();
-
+//Lyden "drop.wav afspilles her efter.
             play("drop.wav");
         });
     }
-
+//
     @Override
     protected void onUpdate(double tpf) {
         getGameWorld().getEntitiesByType(DropType.SAUSAGE ).forEach( droplet -> droplet.translateY(150 * tpf));
